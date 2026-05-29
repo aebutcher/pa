@@ -1,6 +1,5 @@
 const CACHE_NAME = 'plank-tracker-v1';
 const ASSETS = [
-  '/pa/',
   '/pa/index.html',
   '/pa/style.css',
   '/pa/app.js',
@@ -27,6 +26,14 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request))
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      // Directory requests (e.g. /pa/ on install launch) → serve index.html from cache
+      const url = event.request.url;
+      if (url.endsWith('/pa/') || url.endsWith('/pa')) {
+        return caches.match('/pa/index.html').then(r => r || fetch(event.request));
+      }
+      return fetch(event.request);
+    })
   );
 });
