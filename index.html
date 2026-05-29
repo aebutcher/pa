@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PlankApp" />
+  <title>PlankApp</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-crt">
+
+  <!-- Timer Screen -->
+  <div id="screen-timer" class="screen active">
+    <header class="app-header">
+      <span id="pb-display" class="pb-display" aria-live="polite"></span>
+      <button class="nav-btn" id="btn-go-history" aria-label="View history">HISTORY</button>
+    </header>
+
+    <main class="timer-main">
+      <div id="timer-display" class="timer-display" aria-live="off" aria-label="Timer">00:00.0</div>
+
+      <div id="comparison-display" class="comparison-display" aria-live="polite"></div>
+
+      <div class="btn-group">
+        <button id="btn-start" class="btn btn-primary" aria-label="Start timer">START</button>
+        <button id="btn-stop"  class="btn btn-primary hidden" aria-label="Stop timer">STOP</button>
+        <button id="btn-save"  class="btn btn-primary hidden" aria-label="Save session">SAVE</button>
+        <button id="btn-restart" class="btn btn-secondary hidden" aria-label="Restart timer">RESTART</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- History Screen -->
+  <div id="screen-history" class="screen">
+    <header class="app-header">
+      <button class="nav-btn" id="btn-go-timer" aria-label="Back to timer">&#8592; TIMER</button>
+      <span class="header-title">HISTORY</span>
+    </header>
+
+    <main class="history-main">
+      <div id="history-empty" class="history-empty hidden">
+        <p class="empty-msg">NO SESSIONS YET.</p>
+        <p class="empty-sub">DO YOUR FIRST PLANK.</p>
+      </div>
+      <ul id="history-list" class="history-list" aria-label="Session history"></ul>
+    </main>
+  </div>
+
+  <!-- Celebration Overlay -->
+  <div id="celebration-overlay" class="celebration-overlay hidden" aria-live="assertive" role="status">
+    <div class="celebration-inner">
+      <div class="celebration-label">NEW PB!</div>
+      <div id="celebration-time" class="celebration-time"></div>
+      <div class="celebration-buttons">
+        <button id="btn-save-cele"    class="btn btn-primary">SAVE</button>
+        <button id="btn-restart-cele" class="btn btn-secondary">RESTART</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Dialog -->
+  <div id="delete-dialog" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dialog-msg">
+    <div class="dialog-box">
+      <p id="dialog-msg">DELETE THIS SESSION?</p>
+      <div class="dialog-buttons">
+        <button id="btn-delete-confirm" class="btn btn-danger">DELETE</button>
+        <button id="btn-delete-cancel"  class="btn btn-secondary">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/dexie@3/dist/dexie.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
