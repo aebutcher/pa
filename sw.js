@@ -1,12 +1,12 @@
 const CACHE_NAME = 'plank-tracker-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/pa/',
+  '/pa/index.html',
+  '/pa/style.css',
+  '/pa/app.js',
+  '/pa/manifest.json',
+  '/pa/icons/icon-192.png',
+  '/pa/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
